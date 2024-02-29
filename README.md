@@ -14,7 +14,7 @@
 | SIGQUIT 	| <kbd>Ctrl+\\</kbd>| yes  		| Quit the process (The contolling terminal instructs the process to quit and perform a core dump).  |
 | SIGSTOP 	|   				| no  		| Stop executing (Handled by the kernel not OS.)  |
 | SIGKILL 	|   				| no  		| Terminate immediately (Handled by the kernel not OS.). The receiving process cannot perform any clean-up upon receiving this signal.  |
-- As indicated, some of the response to these signals can be modified by a custom handler. This handler can be utilized in either signal() or sigaction() system call.
+- Some of the response to these signals can be modified by a custom handler. This handler can be defined in either `signal()` or `sigaction()` system call.
 - We can **NOT** create our own signals. The response to a (standardised) signal & the meaning of it, however, can be changed.
 
 ## `sigaction()`
@@ -49,7 +49,7 @@ struct sigaction {
 
 ### sa_flags
 - The `sa_flags` member specifies some additional flags. 
-- Setting the flag `SA_SIGINFO` tells the kernel to call the function alternate signal handler (`sa_sigaction`) instead of the default (`sa_handler`)
+- Setting the flag `SA_SIGINFO` tells the kernel to call the alternate signal handler (`sa_sigaction`) instead of the default (`sa_handler`)
 
 ### sa_sigaction
 - `sa_sigaction` is an alternate signal handler with different set of parameters. 
@@ -77,4 +77,37 @@ struct sigaction {
 
 ## Flow
 - Due to reccommendation in the internet, use `sigaction()` instead of `signal()`.
-- Can only use `kill()` to send signals, hence the use of alternate signal handler in sigaction because `SA_SIGINFO` can then contain `si_pid` and `si_uid`.
+- Can only use `kill()` to send signals hence the use of alternate signal handler in sigaction because `SA_SIGINFO` can then contain `si_pid` and `si_uid`.
+
+## Content
+```
+Minitalk
+├── lib
+│   ├── src
+│   │   ├── ft_printf
+│   │   │   ├── ft_printf_c.c
+│   │   │   ├── ft_printf_di.c
+│   │   │   ├── ft_printf_hex.c
+│   │   │   ├── ft_printf_p.c
+│   │   │   ├── ft_printf_s.c
+│   │   │   ├── ft_printf_u.c
+│   │   │   ├── ft_printf.c
+│   │   │   └── ft_printf.h
+│   │   ├── get_next_line
+│   │   │   ├── get_next_line_bonus.c
+│   │   │   ├── get_next_line_bonus.h
+│   │   │   ├── get_next_line_utils_bonus.c
+│   │   │   ├── get_next_line_utils.c
+│   │   │   ├── get_next_line.c
+│   │   │   └── get_next_line.h
+│   │   └── libft
+│   │       ├── ft_atoi.c
+│   │       ├── ft_[everything else].c
+│   │       └── libft.h
+│   └── Makefile
+├── src
+│   ├── client.c
+│   ├── minitalk.h
+│   └── server.c
+└── Makefile
+```
