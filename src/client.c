@@ -3,37 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:17:16 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:27:21 by hsetya           ###   ########.fr       */
+/*   Updated: 2024/02/28 18:44:28 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "minitalk.h"
 
-int main(int argc, char *argv[])
+void	send_bit(int pid, char *msg);
+void	handler(int signo, siginfo_t *siginfo, void *ucontext);
+void	bit_by_bit(int pid, int bit);
+
+int	main(int argc, char **argv)
 {
-    printf("Argc:%d\n", argc);
-    printf("Server PID:%s\n", argv[1]);
-    printf("String to send:%s\n", argv[2]);
-    return(0);
+	if (argc == 3)
+		send_bit(ft_atoi(argv[1]), argv[2]); // to do, put atoi in send_bit
+	else
+		return(ft_printf("Only 3 args accepted.\n"));
+	return (0);
 }
 
-//Define a function `sig_confirm` that takes a signal, which is to be received from the server
-    //If the signal is SIGUSR1 or SIGUSR2
-        //Print "Message recieved"
-    
-//Define a funtion `send_bits` that takes in the server's PID, and a character
-    //Declare an integer variable `bit` to iterate through each bit of the character
-    //If the binary digit at the position `bit` is `1`, send to the server SIGUSR1
-        //Otherwise send to the server SIGUSR2
-    //Delay the program a bit before we look at the next bit of the character
+void	send_bit(int pid, char *msg)
+{
+	struct sigaction	stc_sa;
+	siginfo_t			siginfo;
+	int					i;
 
-//Write a program that takes in as arguments, the PID, and "message"
-    //Handle command input errors
-    //Check for the correct number of arguments
-        //Since the main's argv parameters is of type char, and a PID is an integer, we need to convert this value to an integer
-            //Call our `send_bits` function to send the bits to the server
-            //If a signal is received from the server to acknowledge reciept, call our `sig_confirm` function
+	stc_sa.sa_flags = SA_SIGINFO;
+	stc_sa.sa_sigaction = &handler;
+	sigemptyset(&stc_sa.sa_mask);
+	sigaction(SIGUSR1, &stc_sa, 0);
+	siginfo.si_pid = pid;
+	i = 0;
+	while (msg[i] != '\0')
+	{
+		bit_by_bit(pid, msg[i++]);
+	}
+	//ft_printf("===Message received===\n"); //confirmation like this?? 
+}
+
+void	handler(int sig, siginfo_t *info, void *ucontext)
+{
+	(void)ucontext;
+	(void)info;
+	(void)sig;
+}
+
+void	bit_by_bit(int pid, int bit)
+{
+	int	counter;
+
+	counter = 0;
+	while (counter <= 7)
+	{
+		if ((bit >> counter) & 1)
+		{
+			if (kill(pid, SIGUSR1) == -1)
+				ft_printf("Error signal\n");
+		}
+		else
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				ft_printf("Error signal\n");
+		}
+		counter++;
+		usleep(100);
+	}
+}

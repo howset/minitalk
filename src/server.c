@@ -3,39 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetya <hsetya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:17:21 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:27:35 by hsetya           ###   ########.fr       */
+/*   Updated: 2024/02/28 18:38:39 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-//#define _XOPEN_SOURCE 700
-#include <unistd.h>
-#include <sys/types.h> //pid_t
-/* #include <unistd.h>
-#include <sys/syscall.h> */
 #include "minitalk.h"
 
-int main(void) 
+void	sigusr_handler(int signo, siginfo_t *siginfo, void *ucontext);
+
+int	main(void)
 {
-    pid_t pid = getpid();
-    printf("My process ID is %d.\n", pid);
-    return (0);
+	struct sigaction	stc_sa; // declare a struct for sigaction named stc_sa
+
+	stc_sa.sa_flags = SA_SIGINFO; // specify flags as SA_SIGINFO to use alternate signal handler
+	stc_sa.sa_sigaction = &sigusr_handler; // alternate signal handler
+	sigemptyset(&stc_sa.sa_mask); // Must be initialized by sigemptyset.
+	sigaddset(&stc_sa.sa_mask, SIGUSR1); // SIGUSR1 will be blocked while the signal handler is executing.
+	sigaddset(&stc_sa.sa_mask, SIGUSR2); // as well, SIGUSR2.
+	if ((sigaction(SIGUSR1, &stc_sa, NULL)) == -1)  // control seq if error
+		ft_printf("Error sigaction\n");
+	if ((sigaction(SIGUSR2, &stc_sa, NULL)) == -1)
+		ft_printf("Error sigaction\n");
+	ft_printf("Server work work and now wait wait\n"); // print message
+	ft_printf("PID is: %d\n", getpid());
+	while (1) // now wait until there is signal. break out by SIGINT
+		pause();
+	return (0);
 }
 
-//Define a function `sig_handler` to handle incoming signals
-    //Declare a static integer variable used to iterate through the bits of a character
-    //Declare a static integer variable to construct all the bits of the character 
-        //Check if a character's 8 bits have been contructed
-            //Print the character
-            //Reset the static variables in order to process the next character
-            //Send to the client, a signal to confirm a character was received
+void	sigusr_handler(int sig, siginfo_t *info, void *ucontext)
+{
+	static unsigned char		lett = 0;
+	static int					i = 0; // counter
 
-//Write a program that does not take in command line arguments other than the program name
-    //Handle command input errors
-    //Get the PID and print it 
-    //Enter an infinate loop that continuously waits for signals to be processed
-        //Call the `sig_handler` function to handle to signals
-        //Wait for the next signal
+	(void)ucontext; // unused
+	if (sig == SIGUSR1)
+		lett |= (1 << i);
+	i++;
+	if (i == 8)
+	{
+		ft_putchar_fd(lett, 1);
+		i = 0;
+		lett = 0;
+		if (kill(info->si_pid, SIGUSR1) == -1)
+			ft_printf("Error signal");
+	}
+}

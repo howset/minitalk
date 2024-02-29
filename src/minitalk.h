@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsetyamu <hsetyamu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:35:28 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/02/21 18:37:53 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:59:30 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-putchar
-putstr
-putnbr
-memset
-atoi
+#ifndef MINITALK_H
+# define MINITALK_H
+//# define _XOPEN_SOURCE 700 // sigaction&friends, in conjunction with signal.h
+# define _DEFAULT_SOURCE // to avoid implicit declaration of usleep
+
+# include <unistd.h> // usleep
+//# include <sys/types.h> // pid_t 
+# include <signal.h> // SIGUSR1/2 kill sigaction
+# include "../lib/src/ft_printf/ft_printf.h"
+# include "../lib/src/get_next_line/get_next_line.h"
+# include "../lib/src/libft/libft.h"
+
+#endif
