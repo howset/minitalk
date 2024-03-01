@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:41:46 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 22:29:00 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	struct sigaction	s_sa = {0};
 
 	ft_printf("Server PID [%d]\n",getpid()); // print PID to term
-	ft_printf("I now wait wait for signal!\n");
+	ft_printf("I now wait wait wait for signal!\n");
 	s_sa.sa_sigaction = &alt_handler; // declare usage of alt_handler instead of sa_handler
 	s_sa.sa_flags = SA_SIGINFO; // therefore flags must be activated
 	sigemptyset(&(s_sa.sa_mask)); // sa_mask must be initialized, otherwise errors from valgrind

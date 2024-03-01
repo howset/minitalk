@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:35:10 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 22:31:40 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	struct sigaction	s_sa;
 
 	ft_printf("Server PID [%d]\n", getpid());
-	ft_printf("I now wait wait for signal!\n");
+	ft_printf("I now wait wait wait for signal!\n");
 	s_sa.sa_sigaction = &alt_handler;
 	s_sa.sa_flags = SA_SIGINFO;
 	sigemptyset(&(s_sa.sa_mask));

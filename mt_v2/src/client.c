@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:08 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:27:35 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 22:30:22 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 	if (sig == SIGUSR1)
 	{
 		g_returned = 1;
-		ft_printf("\rI sent sent something!! (%d bits)", ++i);
+		ft_printf("\rI sent sent sent %d things!!", ++i);
 	}
 }
 
