@@ -75,13 +75,13 @@ $(NAME):			$(OBJ)
 					@$(AR) $(NAME) $(OBJ)
 
 .c.o:
-					$(CC) $(CFLAGS) -I./src -c $< -o $(<:.c=.o)
+					@$(CC) $(CFLAGS) -I./src -c $< -o $(<:.c=.o)
 
 clean:
-					$(RM) $(OBJ)
+					@$(RM) $(OBJ)
 
 fclean:				clean
-					$(RM) $(NAME)
+					@$(RM) $(NAME)
 
 re:					fclean all
 
