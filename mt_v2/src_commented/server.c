@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:35:16 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:41:46 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(void)
 void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static char	c; // for the character
-	static int	i; // just a counter
+	static int	i; // just a counter. both static to keep content during repeated calls.
 
 	(void)ucontext; // unused
 	if (sig == SIGUSR1) // if SIGUSR1

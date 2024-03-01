@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:08 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:29:59 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:52:00 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext) // this is the signal
 	if (sig == SIGUSR1) // on receipt of SIGUSR1
 	{
 		g_returned = 1; // set the global flag to 1
-		ft_printf("\rI sent sent something!! (%d bits)", ++i); // the feedback. Must be pre-increment because otherwise the end would be 1 count too many.
+		ft_printf("\rI sent sent something!! (%d bits)", ++i); // the feedback. Must pre-increment because otherwise the end would be 1 count too many.
 	}
 }
 
