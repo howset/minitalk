@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 17:33:58 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:35:10 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext);
 
 int	main(void)
 {
-	struct sigaction	s_sa = {0};
+	struct sigaction	s_sa;
 
-	ft_printf("Server PID [%d]\n",getpid());
+	ft_printf("Server PID [%d]\n", getpid());
 	ft_printf("I now wait wait for signal!\n");
 	s_sa.sa_sigaction = &alt_handler;
 	s_sa.sa_flags = SA_SIGINFO;
+	sigemptyset(&(s_sa.sa_mask));
 	sigaction(SIGUSR1, &s_sa, NULL);
 	sigaction(SIGUSR2, &s_sa, NULL);
 	while (1)
@@ -45,6 +46,5 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 		c = 0;
 	}
 	c = c << 1;
-	if (kill(info->si_pid, SIGUSR1) == -1)
-		exit(ft_printf("Error sending signal\n"));
+	kill(info->si_pid, SIGUSR1);
 }
