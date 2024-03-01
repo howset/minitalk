@@ -17,7 +17,7 @@ RM					= rm -f
 ## Sources & header
 SRC-CLIENT			= ./src/client.c
 SRC-SERVER			= ./src/server.c
-HEADER				= ./src/minitalk.h
+HEADER				= ./src/
 #SRC-CLIENTB		= ./src/client_bonus.c
 #SRC-SERVERB		= ./src/server_bonus.c
 #HEADERB			= ./src/minitalk_bonus.h
