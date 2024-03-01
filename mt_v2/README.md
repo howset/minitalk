@@ -70,7 +70,7 @@ struct sigaction {
 - `pause()` -> do nothing, but can catch signals.
 
 ## Bitwise operators
-- Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/)
+- Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24)
 
 ## RTFM
 - signal(7)
