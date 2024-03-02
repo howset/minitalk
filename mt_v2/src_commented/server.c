@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 22:29:00 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/01 23:01:18 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 		c = 0; // set c back to 0
 	}
 	c = c << 1; // shift left 1 bit for next iteration
-	if (kill(info->si_pid, SIGUSR1) == -1) // control seq that serves also to send back SIGUSR1 to client
+	if (kill(info->si_pid, SIGUSR1) == -1) // control seq that serves also to send SIGUSR1 back to client
 		exit(ft_printf("Error sending signal\n"));
 }

@@ -1,0 +1,60 @@
+The 200 nm Tetraspeck beads emit at four different wavelengths: 430 nm (blue), 515 nm (green), 580 nm (orange) and 680 nm (dark red)~\cite{Tetra}, these correspond to Ch3, Ch2, Ch1, and Ch4 in the case of this experiment. 
+The beads were imaged as depicted in Fig.~\ref{fig:beads}. During the experiment, only three good beads that could be found. 
+From the raw (input) image, a PSF was calculated (measured PSF). 
+The PSF obtained in this way was then used for deconvolution purposes. Another PSF was calculated (theoretically) from various imaging parameters/device parameters and also used for deconvolution procedures (theoretical PSF) as a comparison. 
+
+At first glance, it can be observed the various deconvolution methods (iterative, fast iterative, and inverse filter) performed differently, especially in the z-dimension. 
+It can also be noticed that there is a different focus of the different channels, most prominently seen, again, in the z-dimension. 
+The shift could be caused by chromatic abberations. 
+This shift in focus that can be seen on all images could also be caused by movement of the filter carousel when changing measurement channel during imaging that does not retain the same original focus. 
+Another immediate observation shows that the green channel exhibit a relatively rough background noise which is typical (not shown).
+
+Comparing the measured deconvolutions and the theoretical ones, it is immediately obvious that the resolution in the z-dimension of the measured is better than the theoretical. 
+Calculating the FWHM of each deconvolution methods would give a better overview of their performance in the xy-dimension. 
+This is done by taking a line profile (intensity profile) of all acquired beads on all channels, then make a gaussian fit of the intensity profile and calculate the average FWHM.
+In principal, the resolution in z-dimension can also be obtained in a similar way, however the difference would seem that in this dimension, the object would be in a
+The 200 nm Tetraspeck beads emit at four different wavelengths: 430 nm (blue), 515 nm (green), 580 nm (orange) and 680 nm (dark red)~\cite{Tetra}, these correspond to Ch3, Ch2, Ch1, and Ch4 in the case of this experiment. 
+The beads were imaged as depicted in Fig.~\ref{fig:beads}. During the experiment, only three good beads that could be found. 
+From the raw (input) image, a PSF was calculated (measured PSF). 
+The PSF obtained in this way was then used for deconvolution purposes. Another PSF was calculated (theoretically) from various imaging parameters/device parameters and also used for deconvolution procedures (theoretical PSF) as a comparison. 
+
+At first glance, it can be observed the various deconvolution methods (iterative, fast iterative, and inverse filter) performed differently, especially in the z-dimension. 
+It can also be noticed that there is a different focus of the different channels, most prominently seen, again, in the z-dimension. 
+The shift could be caused by chromatic abberations. 
+This shift in focus that can be seen on all images could also be caused by movement of the filter carousel when changing measurement channel during imaging that does not retain the same original focus. 
+Another immediate observation shows that the green channel exhibit a relatively rough background noise which is typical (not shown).
+
+Comparing the measured deconvolutions and the theoretical ones, it is immediately obvious that the resolution in the z-dimension of the measured is better than the theoretical. 
+Calculating the FWHM of each deconvolution methods would give a better overview of their performance in the xy-dimension. 
+This is done by taking a line profile (intensity profile) of all acquired beads on all channels, then make a gaussian fit of the intensity profile and calculate the average FWHM.
+In principal, the resolution in z-dimension can also be obtained in a similar way, however the difference would seem that in this dimension, the object would be in
+The 200 nm Tetraspeck beads emit at four different wavelengths: 430 nm (blue), 515 nm (green), 580 nm (orange) and 680 nm (dark red)~\cite{Tetra}, these correspond to Ch3, Ch2, Ch1, and Ch4 in the case of this experiment. 
+The beads were imaged as depicted in Fig.~\ref{fig:beads}. During the experiment, only three good beads that could be found. 
+From the raw (input) image, a PSF was calculated (measured PSF). 
+The PSF obtained in this way was then used for deconvolution purposes. Another PSF was calculated (theoretically) from various imaging parameters/device parameters and also used for deconvolution procedures (theoretical PSF) as a comparison. 
+
+At first glance, it can be observed the various deconvolution methods (iterative, fast iterative, and inverse filter) performed differently, especially in the z-dimension. 
+It can also be noticed that there is a different focus of the different channels, most prominently seen, again, in the z-dimension. 
+The shift could be caused by chromatic abberations. 
+This shift in focus that can be seen on all images could also be caused by movement of the filter carousel when changing measurement channel during imaging that does not retain the same original focus. 
+Another immediate observation shows that the green channel exhibit a relatively rough background noise which is typical (not shown).
+
+Comparing the measured deconvolutions and the theoretical ones, it is immediately obvious that the resolution in the z-dimension of the measured is better than the theoretical. 
+Calculating the FWHM of each deconvolution methods would give a better overview of their performance in the xy-dimension. 
+This is done by taking a line profile (intensity profile) of all acquired beads on all channels, then make a gaussian fit of the intensity profile and calculate the average FWHM.
+In principal, the resolution in z-dimension can also be obtained in a similar way, however the difference would seem that in this dimension, the object would be in a
+The 200 nm Tetraspeck beads emit at four different wavelengths: 430 nm (blue), 515 nm (green), 580 nm (orange) and 680 nm (dark red)~\cite{Tetra}, these correspond to Ch3, Ch2, Ch1, and Ch4 in the case of this experiment. 
+The beads were imaged as depicted in Fig.~\ref{fig:beads}. During the experiment, only three good beads that could be found. 
+From the raw (input) image, a PSF was calculated (measured PSF). 
+The PSF obtained in this way was then used for deconvolution purposes. Another PSF was calculated (theoretically) from various imaging parameters/device parameters and also used for deconvolution procedures (theoretical PSF) as a comparison. 
+
+At first glance, it can be observed the various deconvolution methods (iterative, fast iterative, and inverse filter) performed differently, especially in the z-dimension. 
+It can also be noticed that there is a different focus of the different channels, most prominently seen, again, in the z-dimension. 
+The shift could be caused by chromatic abberations. 
+This shift in focus that can be seen on all images could also be caused by movement of the filter carousel when changing measurement channel during imaging that does not retain the same original focus. 
+Another immediate observation shows that the green channel exhibit a relatively rough background noise which is typical (not shown).
+
+Comparing the measured deconvolutions and the theoretical ones, it is immediately obvious that the resolution in the z-dimension of the measured is better than the theoretical. 
+Calculating the FWHM of each deconvolution methods would give a better overview of their performance in the xy-dimension. 
+This is done by taking a line profile (intensity profile) of all acquired beads on all channels, then make a gaussian fit of the intensity profile and calculate the average FWHM.
+In principal, the resolution in z-dimension can also be obtained in a similar way, however the difference would seem that in this dimension, the object would be in
