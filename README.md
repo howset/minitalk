@@ -40,14 +40,18 @@ minitalk
 │   │   ├── client.c
 │   │   ├── minitalk.h
 │   │   └── server.c
+│   ├── src_bonus
+│   │   ├── client_bonus.c
+│   │   ├── minitalk_bonus.h
+│   │   └── server_bonus.c
 │   ├── src_commented
 │   │   ├── client.c
 │   │   ├── minitalk.h
 │   │   └── server.c
-│   ├── 1000.txt
-│   ├── 10000.txt
-│   ├── 5000_emo.txt
-│   ├── 5000.txt
+│   ├── txts
+│   │   ├── 8000c_emo.txt
+│   │   ├── 8000c.txt
+│   │   └── 2000c.txt
 │   ├── Makefile
 │   └── README.md
 ├── .gitignore
