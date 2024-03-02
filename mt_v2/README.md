@@ -89,5 +89,13 @@ cc -Wall -Werror -Wextra -g -I./src ./src/server.c ./lib/libft.a -o server && va
 ```
 
 ```
-cc -Wall -Werror -Wextra -g -I./src ./src/client.c ./lib/libft.a -o client && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./client 116193 "test"| cat -e
+cc -Wall -Werror -Wextra -g -I./src ./src/client.c ./lib/libft.a -o client && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./client | cat -e
+```
+
+```
+cc -Wall -Werror -Wextra -g -I./src_bonus ./src_bonus/server_bonus.c ./lib/libft.a -o server_bonus && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./server | cat -e
+```
+
+```
+cc -Wall -Werror -Wextra -g -I./src_bonus ./src_bonus/client_bonus.c ./lib/libft.a -o client_bonus && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./client | cat -e
 ```
