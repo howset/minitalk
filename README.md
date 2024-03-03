@@ -7,10 +7,8 @@ The second one seems easier to understand. ~Still working on it.~ Seems done. No
 ```
 minitalk
 ├── mt_v1
-│   ├── client_real.c
 │   ├── client.c
 │   ├── minitalk.h
-│   ├── server_real.c
 │   └── server.c
 ├── mt_v2
 │   ├── lib
