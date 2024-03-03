@@ -15,6 +15,7 @@
 ## Flow
 - Due to reccommendation in the internet, use `sigaction()` instead of `signal()`.
 - Can only use `kill()` to send signals hence the use of alternate signal handler in sigaction because `SA_SIGINFO` can then contain `si_pid` and `si_uid`.
+- to be expanded soon enough. maybe later today or tomorrow.
 
 ## Slides
 ![minitalk1](./slides/minitalk1.svg "intro")
