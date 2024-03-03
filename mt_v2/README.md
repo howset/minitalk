@@ -89,10 +89,6 @@ struct sigaction {
 - `pid_t pid = getpid();` (`#include <sys/types.h>`)
 - `int kill(pid_t pid, int sig);` (`#include <signal.h>`)
 
-### `sleep()` and `pause()`
-- `sleep()` -> do nothing, cant respond to signals
-- `pause()` -> do nothing, but can catch signals.
-
 ### Bitwise operators
 - Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24)
 
@@ -100,8 +96,6 @@ struct sigaction {
 - signal(7)
 - sigaction
 - kill
-- usleep
-- pause
 
 ### Valgrind shortcut to copy-paste
 ```
