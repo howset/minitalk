@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/02 11:44:40 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:15:58 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 
 	(void)ucontext;
 	if (sig == SIGUSR1)
-		c = c | 1;
+		c = c | 0x01;
 	cnt++;
 	if (cnt == 8)
 	{

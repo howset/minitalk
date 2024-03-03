@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:04 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 23:01:18 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:06:54 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,34 @@ int	main(void)
 	sigemptyset(&(s_sa.sa_mask)); // sa_mask must be initialized, otherwise errors from valgrind
 	sigaction(SIGUSR1, &s_sa, NULL); // prepare for incoming signals
 	sigaction(SIGUSR2, &s_sa, NULL); // prepare for incoming signals
+	sigaction(SIGCONT, &s_sa, NULL); // to handle if called from suspend (bonusbonus)
 	while (1) // now we wait for signal from client
 		pause();
 	return (0);
 }
 
+
 void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static char	c; // for the character
-	static int	i; // just a counter. both static to keep content during repeated calls.
+	static int	cnt; // just a counter. both static to keep content during repeated calls.
 
 	(void)ucontext; // unused
-	if (sig == SIGUSR1) // if SIGUSR1
-		c = c | 1; //assign the LSB of c to 1 (will definitely be 1) 
-	i++; // increment the counter. If SIGUSR2, just increment without setting any bit of c to 1 (stays 0)
-	if (i == 8) // until 8 (one char is 8 bits)
+	if (sig == SIGCONT) // if the signal **ISN'T** either SIGUSR, but SIGCONT (fg)
+		ft_printf("Server PID [%d]\n", getpid()); //reprint the PID
+	else
 	{
-		write(1, &c, 1); // write c
-		i = 0; // set counter back to 0
-		c = 0; // set c back to 0
+		if (sig == SIGUSR1) // if SIGUSR1
+			c = c | 0x01; //assign the LSB of c to 1 (will definitely be 1). Implied: if SIGUSR2, then dont do this: set it/keep it 0
+		cnt++; // increment the counter. If SIGUSR2, just increment
+		if (cnt == 8) // until 8 (one char is 8 bits)
+		{
+			write(1, &c, 1);  // write c
+			cnt = 0; // set counter back to 0
+			c = 0; // set all bits of c back to 0
+		}
+		c = c << 1; // shift left 1 bit for next iteration
+		if (kill(info->si_pid, SIGUSR1) == -1) // control seq that serves also to send SIGUSR1 back to client
+			exit(ft_printf("Error sending signal\n"));
 	}
-	c = c << 1; // shift left 1 bit for next iteration
-	if (kill(info->si_pid, SIGUSR1) == -1) // control seq that serves also to send SIGUSR1 back to client
-		exit(ft_printf("Error sending signal\n"));
 }

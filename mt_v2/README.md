@@ -1,6 +1,29 @@
 # Minitalk
 
-## Signals
+## Content
+1. server_bonus
+>	1. int	main(void)
+>	2. void	alt_handler(int sig, siginfo_t *info, void *ucontext)
+2. client_bonus
+>	1. int	main(int argc, char *argv[])
+>	2. void	alt_handler(int sig, siginfo_t *info, void *ucontext)
+>	3. void	sender(int server_pid, const char *str)
+3. minitalk.h
+>	1. include libft & friends
+>	2. include signal.h
+
+## Flow
+- Due to reccommendation in the internet, use `sigaction()` instead of `signal()`.
+- Can only use `kill()` to send signals hence the use of alternate signal handler in sigaction because `SA_SIGINFO` can then contain `si_pid` and `si_uid`.
+
+## Slides
+![minitalk1](./slides/minitalk1.svg "intro")
+![minitalk2](./slides/minitalk2.svg "client side")
+![minitalk3](./slides/minitalk3.svg "server side")
+![minitalk4](./slides/minitalk4.svg "general flow")
+
+## Notes
+### Signals
 - Sources [[1]](https://en.wikipedia.org/wiki/Signal_(IPC)) [[2]](https://www.youtube.com/watch?v=Hu2CYemkgYw) [[3]](https://www.youtube.com/watch?v=VwS3dx3uyiQ)
 - Standardized messages that are sent to a running program (or process) to trigger specific behavior.
 - Sent in form of a pulse/frequency of electricity in order to notify a process/program of an event that occurred.
@@ -18,7 +41,7 @@
 - Some of the response to these signals can be modified by a custom handler. This handler can be defined in either `signal()` or `sigaction()` system call.
 - We can **NOT** create our own signals. The response to a (standardised) signal & the meaning of it, however, can be changed.
 
-## `sigaction()`
+### `sigaction()`
 
 - Sources [[1]](https://en.wikipedia.org/wiki/Sigaction) [[2]](https://pubs.opengroup.org/onlinepubs/9699919799/functions/sigaction.html) [[3]](https://man7.org/linux/man-pages/man2/signal.2.html) [[4]](https://www.youtube.com/watch?v=_1TuZUbCnX0) [[5]](https://www.youtube.com/watch?v=VwS3dx3uyiQ)
 - Avoid the use of `signal()` and use `sigaction()` instead.
@@ -36,11 +59,11 @@ struct sigaction {
 	void         (*sa_sigaction)(int, siginfo_t *, void*); //alternate signal handler
 };
 ```
-### sa_handler
+#### sa_handler
 - The `sa_handler` member specifies the address of a function to be called when the process receives the signal. The signal number is passed as an integer argument to this function.
 - Only one signal handler must be specified, either `sa_handler` or `sa_sigaction`. If it is desired to use `sa_sigaction`, `SA_SIGINFO` flag must be set. 
 
-### sa_mask
+#### sa_mask
 - The `sa_mask` member specifies additional signals to be blocked during the execution of signal handler. 
 - Must be initialized with `sigemptyset(3)`. 
 - Specify here the signals that would be blocked during the execution of the handler function.
@@ -48,42 +71,38 @@ struct sigaction {
 - Multiple signals of the same type are/may be combined.
 - Maybe better imagined as delaying a signal instead of blocking.
 
-### sa_flags
+#### sa_flags
 - The `sa_flags` member specifies some additional flags. 
 - Setting the flag `SA_SIGINFO` tells the kernel to call the alternate signal handler (`sa_sigaction`) instead of the default (`sa_handler`)
 
-### sa_sigaction
+#### sa_sigaction
 - `sa_sigaction` is an alternate signal handler with different set of parameters. 
 - The `int` parameter is the signal number.
 - The `siginfo_t` struct pointer will contain info such as which process sent the signal once `sa_sigaction` is invoked.
 - The `void*` pointer allows to pass in a context (obsolete, non-POSIX construct to manage user threads.). Just use NULL. 
 
-## `kill()`
+### `kill()`
 - Sources[[1]](https://www.csl.mtu.edu/cs4411.ck/www/NOTES/signal/raise.html) [[2]](https://www.csl.mtu.edu/cs4411.ck/www/NOTES/signal/kill.html)
 - A general command used to send a signal to a process in UNIX. (aside from `raise()`)
 - A termination signal is the default (SIGTERM).
 - `pid_t pid = getpid();` (`#include <sys/types.h>`)
 - `int kill(pid_t pid, int sig);` (`#include <signal.h>`)
 
-## `sleep()` and `pause()`
+### `sleep()` and `pause()`
 - `sleep()` -> do nothing, cant respond to signals
 - `pause()` -> do nothing, but can catch signals.
 
-## Bitwise operators
+### Bitwise operators
 - Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24)
 
-## RTFM
+### RTFM
 - signal(7)
 - sigaction
 - kill
 - usleep
 - pause
 
-## Flow
-- Due to reccommendation in the internet, use `sigaction()` instead of `signal()`.
-- Can only use `kill()` to send signals hence the use of alternate signal handler in sigaction because `SA_SIGINFO` can then contain `si_pid` and `si_uid`.
-
-## Valgrind shortcut to copy-paste
+### Valgrind shortcut to copy-paste
 ```
 cc -Wall -Werror -Wextra -g -I./src ./src/server.c ./lib/libft.a -o server && valgrind --tool=memcheck -q --leak-check=full --show-leak-kinds=all -s --track-origins=yes ./server | cat -e
 ```

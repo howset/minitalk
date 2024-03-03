@@ -6,13 +6,13 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:08 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/01 21:52:00 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:06:37 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int		g_returned; // global flag to indicate receipt of a return signal
+int		g_returnflag; // global flag to indicate receipt of a return signal
 void	alt_handler(int sig, siginfo_t *info, void *ucontext);
 void	str_sender(int server_pid, const char *str);
 void	c_sender(int server_pid, unsigned char c);
@@ -45,35 +45,31 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext) // this is the signal
 	(void)ucontext; // unused
 	if (sig == SIGUSR1) // on receipt of SIGUSR1
 	{
-		g_returned = 1; // set the global flag to 1
+		g_returnflag = 1; // set the global flag to 1
 		ft_printf("\rI sent sent something!! (%d bits)", ++i); // the feedback. Must pre-increment because otherwise the end would be 1 count too many.
 	}
 }
 
-void	str_sender(int server_pid, const char *str) // the function that processes the message/str
-{ // basically just traverses the str for each char
-	while (*str) // calls the character sender in a loop for each char in the str
-	{
-		c_sender(server_pid, *str); // send one char at a time
-		str++;
-	}
-	c_sender(server_pid, '\0'); // ends the sent str with a null term
-}
+void	sender(int server_pid, const char *str) // the function that processes the message/str
+{ // basically just traverses the str for each char, then traverses each bit and kills it to server
+	int				i; // bitcounter for countdown, to send from first bit to last
+	unsigned char	c; // to hold each char of *str
 
-void	c_sender(int server_pid, unsigned char c) // the character processer
-{ // goes through each bit of the char
-	int	i;
-
-	i = 7; // start the bitwise right shifting by 7 (down to 0)
-	while (i >= 0)
+	while (*str) // send one char at a time
 	{
-		g_returned = 0; // set the global flag to 0
-		if ((c >> i) & 1) // compare the LSB of the right shift by 7(i will decrement in this loop) bitwise to 1 (using &).
-			kill(server_pid, SIGUSR1); // (c >> 7 -> 1) --> (1 & 1 -> 1), this would evaluate to TRUE and send SIGUSR1
-		else // if not TRUE (c >> 7 -> 0) --> (0 & 1 -> 0), then SIGUSR2
-			kill(server_pid, SIGUSR2);
-		while (!g_returned) // as long as g_returned is not 1 (set to 0 in this function), wait.
-			; // only proceed once server to send signal back to be caught by client signal handler that would flip the flag to 1
-		i--; // decrement and proceed with the loop
+		i = 7; // to countdown 8 bits
+		c = *str;
+		while (i >= 0) // loop over the bits of c
+		{
+			g_returnflag = 0; // set the flag to 0, this means to wait for feedback/signal from server
+			if ((c >> i) & 0x01) // shift bits by 7 (on first loop), to set the very end bit of the order as the first --> explain in slides
+				kill(server_pid, SIGUSR1); // (c >> 7 -> 1) --> (1 & 1 -> 1), this would evaluate to TRUE and send SIGUSR1
+			else // if not TRUE (c >> 7 -> 0) --> (0 & 1 -> 0), then SIGUSR2
+				kill(server_pid, SIGUSR2);
+			while (!g_returnflag) // as long as flag is not 1 (set to 0 in this function), wait.
+				; // only proceed once server to send signal back to be caught by client signal handler that would flip the flag to 1
+			i--; // decrement and proceed with the loop
+		}
+		str++; // next char please
 	}
 }

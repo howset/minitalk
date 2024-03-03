@@ -6,7 +6,7 @@
 /*   By: hsetyamu <hsetyamu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:01:08 by hsetyamu          #+#    #+#             */
-/*   Updated: 2024/03/02 11:18:49 by hsetyamu         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:08:41 by hsetyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	sender(int server_pid, const char *str)
 		while (i >= 0)
 		{
 			g_returnflag = 0;
-			if ((c >> i) & 1)
+			if ((c >> i) & 0x01)
 				kill(server_pid, SIGUSR1);
 			else
 				kill(server_pid, SIGUSR2);
