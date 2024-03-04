@@ -96,6 +96,7 @@ struct sigaction {
 - signal(7)
 - sigaction
 - kill
+- pause()
 
 ### Valgrind shortcut to copy-paste
 ```
