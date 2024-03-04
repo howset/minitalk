@@ -38,7 +38,7 @@ void	alt_handler(int sig, siginfo_t *info, void *ucontext)
 
 	(void)ucontext;
 	if (sig == SIGCONT)
-		ft_printf("Server PID [%d]\n", getpid());
+		ft_printf("Server PID [%d] --> returning from suspend\n", getpid());
 	else
 	{
 		if (sig == SIGUSR1)
