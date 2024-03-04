@@ -44,9 +44,14 @@ minitalk
 │   │   │   │   └── get_next_line.h
 │   │   │   └── libft
 │   │   │       ├── ft_atoi.c
-│   │   │       ├── ft [everything else].c
+│   │   │       ├── ft_[everything else].c
 │   │   │       └── libft.h
 │   │   └── Makefile
+│   ├── slides
+│   │   ├── minitalk1.svg
+│   │   ├── minitalk2.svg
+│   │   ├── minitalk3.svg
+│   │   └── minitalk4.svg
 │   ├── src
 │   │   ├── client.c
 │   │   ├── minitalk.h
@@ -60,9 +65,9 @@ minitalk
 │   │   ├── minitalk.h
 │   │   └── server.c
 │   ├── txts
+│   │   ├── 2000c.txt
 │   │   ├── 8000c_emo.txt
-│   │   ├── 8000c.txt
-│   │   └── 2000c.txt
+│   │   └── 8000c.txt
 │   ├── Makefile
 │   └── README.md
 ├── .gitignore
