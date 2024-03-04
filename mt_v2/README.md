@@ -101,7 +101,7 @@ struct sigaction {
 - Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24)
 
 ### UTF8
-- Source [[1]](https://blog.hubspot.com/website/what-is-utf-8)
+- Source [[1]](https://blog.hubspot.com/website/what-is-utf-8) [[2]](https://deliciousbrains.com/how-unicode-works/)
 
 ### RTFM
 - signal(7)
