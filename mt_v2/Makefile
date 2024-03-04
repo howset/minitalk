@@ -28,6 +28,25 @@ GREEN				=	\033[1;32m
 COLOFF				=	\033[0m
 
 ##------------------------------------------------------------------##
+# Build rules
+
+all:				$(NAME-LIBFT) $(NAME-CLIENT) $(NAME-SERVER)
+
+bonus:				$(NAME-LIBFT) $(NAME-CLIENTB) $(NAME-SERVERB)
+
+clean:
+					@$(RM) $(NAME-CLIENT) $(NAME-SERVER) $(NAME-CLIENTB) $(NAME-SERVERB)
+					@echo "$(RED)Minitalk's gone, baby, gone!$(COLOFF)"
+
+fclean:				clean
+					@make fclean -C ./lib
+					@echo "$(RED)Libft's gone, baby, gone!$(COLOFF)"
+
+re:					fclean all
+
+re-bonus:			fclean bonus
+
+##------------------------------------------------------------------##
 # Targets
 $(NAME-LIBFT):
 		@make -C./lib
@@ -48,25 +67,6 @@ $(NAME-CLIENTB): ./src_bonus/client_bonus.c $(NAME-LIBFT)
 $(NAME-SERVERB): ./src_bonus/server_bonus.c $(NAME-LIBFT)
 		@$(CC) $(CFLAGS) $(HEADERB) $(SRC-SERVERB) $(NAME-LIBFT) -o $(NAME-SERVERB)  
 		@echo "$(GREEN)Server_bonus ready!$(COLOFF)"
-
-##------------------------------------------------------------------##
-# Build rules
-
-all:				$(NAME-LIBFT) $(NAME-CLIENT) $(NAME-SERVER)
-
-bonus:				$(NAME-LIBFT) $(NAME-CLIENTB) $(NAME-SERVERB)
-
-clean:
-					@$(RM) $(NAME-CLIENT) $(NAME-SERVER) $(NAME-CLIENTB) $(NAME-SERVERB)
-					@echo "$(RED)Minitalk's gone, baby, gone!$(COLOFF)"
-
-fclean:				clean
-					@make fclean -C ./lib
-					@echo "$(RED)Libft's gone, baby, gone!$(COLOFF)"
-
-re:					fclean all
-
-re-bonus:			fclean bonus
 
 ##------------------------------------------------------------------##
 #.PHONY
