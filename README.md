@@ -14,6 +14,8 @@ So then, again, dig around the internet. Found several hints, and compose my cod
 
 The challenge is obviously playing around with the bitwise operations. Normal logical operations are ok, but doing it on the bit-level requires another step of effort. But basically, other than that, and avoiding non beginner-friendly syntaxes, the manuals of the functions would suffice.
 
+The bonus is actually quite simple to achieve. I am not sure why or how, but as long as the signal is sent properly, emojis are displayed by the terminal without problem. And the first bonus is already included in the design of the back and forth communication between client and server. The only exclamation mark here is the use of one global variable in the client side that serves as a flag to hold the firing of the next signal if the server has not pinged a confirmation signal. I suppose this can done in a different way by using adding another function, but I am satisfied enough with this flow on my current level.
+
 ## Content
 ```
 minitalk
