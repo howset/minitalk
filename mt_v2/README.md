@@ -102,10 +102,29 @@ struct sigaction {
 
 | X 	| Y	| X & Y | X \| Y | X ^ Y	| ~(X)	|
 |---	|---	|---	|---	|---	|---	|
-| 0	| 0	| 0	| 0	| 0	| 1	|
-| 0	| 1	| 0	| 1	| 1	| 1	|
-| 1	| 0	| 0	| 1	| 1	| 0	|
-| 1	| 1	| 1	| 1	| 0	| 0	|
+| **0**	| **0**	| 0	| 0	| 0	| 1	|
+| **0**	| **1**	| 0	| 1	| 1	| 1	|
+| **1**	| **0**	| 0	| 1	| 1	| 0	|
+| **1**	| **1**	| 1	| 1	| 0	| 0	|
+
+- Bitwise AND (&) copies a bit to the result if it exists in both operands. The result is 1 only if both bits are 1. To set up a mask to check the values of specific bits.
+- Bitwise OR (|) Copies a bit to the result if it exists in either operand. The result is 1 if either bit is 1. To add two numbers if there is no carry involved.
+- Shift left (<<). The left operand value is shifted left by the number of bits specified by the right operand. To align bits.
+- Shift right (>>). The left operand value is shifted right by the number of bits specified by the right operand. To align bits.
+-  The bitwise AND (&) operator example process:
+
+| AND (&)	|   |   |   |   |   |   |   |   |
+| ---		|---|---|---|---|---|---|---|---|
+| 'd'		| 0 | 1 | 1 | 0 | 1 | 0 | 0 | 0 |
+| 1		| 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
+| Output	| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+-  The bitwise OR (|) operator example process:
+
+| OR (\|)	|   |   |   |   |   |   |   |   |
+| ---		|---|---|---|---|---|---|---|---|
+| 'd'		| 0 | 1 | 1 | 0 | 1 | 0 | 0 | 0 |
+| 1		| 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
+| Output	| 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 |
 
 ### UTF8
 - Source [[1]](https://blog.hubspot.com/website/what-is-utf-8) [[2]](https://deliciousbrains.com/how-unicode-works/)
