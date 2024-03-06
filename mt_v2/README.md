@@ -99,6 +99,7 @@ struct sigaction {
 
 ### Bitwise operators
 - Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24) [[3]](https://www.techtarget.com/whatis/definition/bitwise) [[4]](https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/tutorial/)
+
 | X 	| Y	| X & Y | X \| Y | X ^ Y	| ~(X)	|
 |---	|---	|---	|---	|---	|---	|
 | 0	| 0	| 0	| 0	| 0	| 1	|
