@@ -98,7 +98,13 @@ struct sigaction {
 - `int kill(pid_t pid, int sig);` (`#include <signal.h>`)
 
 ### Bitwise operators
-- Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24)
+- Source [[1]](https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/) [[2]](https://medium.com/@oduwoledare/42-minitalk-explained-5b236adc2c24) [[3]](https://www.techtarget.com/whatis/definition/bitwise) [[4]](https://www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/tutorial/)
+| X 	| Y	| X & Y | X \| Y | X ^ Y	| ~(X)	|
+|---	|---	|---	|---	|---	|---	|
+| 0	| 0	| 0	| 0	| 0	| 1	|
+| 0	| 1	| 0	| 1	| 1	| 1	|
+| 1	| 0	| 0	| 1	| 1	| 0	|
+| 1	| 1	| 1	| 1	| 0	| 0	|
 
 ### UTF8
 - Source [[1]](https://blog.hubspot.com/website/what-is-utf-8) [[2]](https://deliciousbrains.com/how-unicode-works/)
