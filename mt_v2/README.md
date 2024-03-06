@@ -115,16 +115,16 @@ struct sigaction {
 
 | AND (&)	|   |   |   |   |   |   |   |   |
 | ---		|---|---|---|---|---|---|---|---|
-| 'd'		| 0 | 1 | 1 | 0 | 1 | 0 | 0 | 0 |
+| 'd'		| 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 |
 | 1		| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
 | Output	| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 -  The bitwise OR (|) operator example process:
 
 | OR (\|)	|   |   |   |   |   |   |   |   |
 | ---		|---|---|---|---|---|---|---|---|
-| 'd'		| 0 | 1 | 1 | 0 | 1 | 0 | 0 | 0 |
-| 1		| 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
-| Output	| 0 | 1 | 1 | 1 | 1 | 0 | 0 | 1 |
+| 'd'		| 0 | 1 | 1 | 0 | 0 | 1 | 0 | 0 |
+| 1		| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 |
+| Output	| 0 | 1 | 1 | 0 | 0 | 1 | 0 | 1 |
 
 ### UTF8
 - Source [[1]](https://blog.hubspot.com/website/what-is-utf-8) [[2]](https://deliciousbrains.com/how-unicode-works/)
