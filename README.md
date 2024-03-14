@@ -1,6 +1,6 @@
 # minitalk
 
-Like the prev proj., 2 versions here. First one works very well on any input I tested, but rather complex to decipher.
+Like the prev proj., 2 versions here. First one works ok on any input I tested, but rather complex to decipher.
 The second one seems easier to understand.  
 ~Still working on it.~  
 ~Seems done. Now work on slides.~  
